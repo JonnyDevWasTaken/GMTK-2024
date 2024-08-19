@@ -21,3 +21,5 @@ health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_kgn3e")
+
+[connection signal="destroyed" from="HealthComponent" to="." method="_on_health_component_destroyed"]

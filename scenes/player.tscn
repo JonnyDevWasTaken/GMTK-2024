@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtndqye11c34j"]
+[gd_scene load_steps=7 format=3 uid="uid://dtndqye11c34j"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q6gkj"]
+[ext_resource type="Texture2D" uid="uid://chjxxfbjady54" path="res://assets/playerShip3_blue.png" id="2_4ngsb"]
 [ext_resource type="PackedScene" uid="uid://0u16heudwe4d" path="res://scenes/basic_weapon.tscn" id="3_o6ro8"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hnaj3"]
-load_path = "res://.godot/imported/playerShip3_blue.png-016c55ae4c7dba0a4263eb78067d86fe.ctex"
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="3_ph2b8"]
+[ext_resource type="Script" path="res://scripts/hitbox_component.gd" id="4_7pf4q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7um0v"]
 radius = 50.01
@@ -15,11 +15,24 @@ script = ExtResource("1_q6gkj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = SubResource("CompressedTexture2D_hnaj3")
+texture = ExtResource("2_4ngsb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-10, 0)
 shape = SubResource("CircleShape2D_7um0v")
 
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_ph2b8")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("4_7pf4q")
+health_component = NodePath("../HealthComponent")
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-10, 0)
+shape = SubResource("CircleShape2D_7um0v")
+
 [node name="Weapon" parent="." instance=ExtResource("3_o6ro8")]
 position = Vector2(43, 0)
+
+[connection signal="destroyed" from="HealthComponent" to="." method="_on_health_component_destroyed"]

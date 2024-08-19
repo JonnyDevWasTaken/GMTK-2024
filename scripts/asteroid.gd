@@ -1,11 +1,15 @@
 extends Sprite2D
 
 
+var stored_resources := StoredResource.new()
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	stored_resources.crew = randi_range(1, 10)
+	stored_resources.titanium = randi_range(1, 10)
+	stored_resources.tritium = randi_range(1, 10)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_health_component_destroyed() -> void:
+	EventBus.transfer_resource.emit(stored_resources)
