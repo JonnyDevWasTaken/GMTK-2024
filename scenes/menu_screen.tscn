@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu1hyv0v2axoh"]
+
+[ext_resource type="Script" path="res://scripts/menu_screen.gd" id="1_bs0co"]
+[ext_resource type="Texture2D" uid="uid://cx8jajg3yoibv" path="res://assets/background.png" id="2_aqck2"]
+[ext_resource type="PackedScene" uid="uid://x6otmmvjjtgj" path="res://scenes/spawner.tscn" id="3_26jgs"]
+[ext_resource type="PackedScene" uid="uid://b2takavh56645" path="res://scenes/asteroid.tscn" id="4_vmsmf"]
+[ext_resource type="PackedScene" uid="uid://cnn5762c5k7yj" path="res://scenes/information.tscn" id="5_ebeiq"]
+[ext_resource type="PackedScene" uid="uid://baj50j5fhowrp" path="res://scenes/credits.tscn" id="6_3x2xl"]
+
+[node name="MenuScreen" type="Node2D"]
+script = ExtResource("1_bs0co")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(958.5, 539)
+scale = Vector2(2.39375, 1.79333)
+texture = ExtResource("2_aqck2")
+
+[node name="Spawner" parent="." instance=ExtResource("3_26jgs")]
+spawn_scene = ExtResource("4_vmsmf")
+
+[node name="MainScreen" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="MainScreen"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.309804)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -122.0
+offset_right = 258.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainScreen/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Space Pirates"
+horizontal_alignment = 1
+
+[node name="NewGameButton" type="Button" parent="MainScreen/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "New Game"
+
+[node name="InstructionsButton" type="Button" parent="MainScreen/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "How To Play"
+
+[node name="Credits" type="Button" parent="MainScreen/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Credits"
+
+[node name="Information" parent="." instance=ExtResource("5_ebeiq")]
+
+[node name="Credits" parent="." instance=ExtResource("6_3x2xl")]
+
+[connection signal="button_up" from="MainScreen/ColorRect/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_button_up"]
+[connection signal="button_up" from="MainScreen/ColorRect/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_button_up"]
+[connection signal="button_up" from="MainScreen/ColorRect/VBoxContainer/Credits" to="." method="_on_credits_button_up"]

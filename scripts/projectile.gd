@@ -4,7 +4,7 @@ var direction: Vector2
 var distance_travelled: float
 var damage: float
 @export var speed: float = 1000.0
-@export var max_range: float = 500.0
+@export var max_range: float = 800.0
 
 
 func _physics_process(delta: float) -> void:
@@ -20,3 +20,7 @@ func _on_area_entered(area: Area2D) -> void:
 		var hitbox: HitboxComponent = area
 		hitbox.damage(damage)
 		queue_free()
+
+
+func set_laser_sprite(laser_sprite) -> void:
+	$ProjectileSprite.texture = laser_sprite

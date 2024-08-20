@@ -1,18 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://hp7u4r4la1oh"]
+[gd_scene load_steps=8 format=3 uid="uid://hp7u4r4la1oh"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_bkiss"]
-[ext_resource type="Texture2D" uid="uid://drci6rpu3gecg" path="res://assets/enemyBlack1.png" id="2_hvpff"]
+[ext_resource type="Texture2D" uid="uid://tcy50k4mbejt" path="res://assets/enemy.png" id="2_5msy2"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="3_n1urf"]
+[ext_resource type="Script" path="res://scripts/hitbox_component.gd" id="4_w84r5"]
+[ext_resource type="PackedScene" uid="uid://0u16heudwe4d" path="res://scenes/basic_weapon.tscn" id="5_qf5km"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8mwlk"]
-radius = 49.0918
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_svdmb"]
+radius = 200.003
 
 [node name="Enemy" type="CharacterBody2D"]
+top_level = true
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_bkiss")
+min_dist_to_player = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_hvpff")
+rotation = -1.5708
+texture = ExtResource("2_5msy2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+visible = false
 shape = SubResource("CircleShape2D_8mwlk")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_n1urf")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_w84r5")
+health_component = NodePath("../HealthComponent")
+
+[node name="EnemyHitbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_8mwlk")
+
+[node name="SeparationArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeparationArea"]
+shape = SubResource("CircleShape2D_svdmb")
+
+[node name="EnemyVisiblility" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(20, 20)
+
+[node name="BasicWeapon" parent="." instance=ExtResource("5_qf5km")]
+position = Vector2(60, 0)
+fire_rate = 1.0
+origin = 1
+
+[connection signal="destroyed" from="HealthComponent" to="." method="_on_health_component_destroyed"]
+[connection signal="body_entered" from="SeparationArea" to="." method="_on_separation_area_body_entered"]
+[connection signal="body_exited" from="SeparationArea" to="." method="_on_separation_area_body_exited"]
+[connection signal="screen_exited" from="EnemyVisiblility" to="." method="_on_enemy_visiblility_screen_exited"]
