@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dtndqye11c34j"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q6gkj"]
-[ext_resource type="Texture2D" uid="uid://chjxxfbjady54" path="res://assets/playerShip3_blue.png" id="2_4ngsb"]
+[ext_resource type="Texture2D" uid="uid://chjxxfbjady54" path="res://assets/player.png" id="2_4ngsb"]
 [ext_resource type="PackedScene" uid="uid://0u16heudwe4d" path="res://scenes/basic_weapon.tscn" id="3_o6ro8"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="3_ph2b8"]
 [ext_resource type="Script" path="res://scripts/hitbox_component.gd" id="4_7pf4q"]
@@ -9,9 +9,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7um0v"]
 radius = 50.01
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
 motion_mode = 1
 script = ExtResource("1_q6gkj")
+health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -25,6 +26,7 @@ shape = SubResource("CircleShape2D_7um0v")
 script = ExtResource("3_ph2b8")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_mask = 0
 script = ExtResource("4_7pf4q")
 health_component = NodePath("../HealthComponent")
 
@@ -35,4 +37,8 @@ shape = SubResource("CircleShape2D_7um0v")
 [node name="Weapon" parent="." instance=ExtResource("3_o6ro8")]
 position = Vector2(43, 0)
 
+[node name="RegenTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="destroyed" from="HealthComponent" to="." method="_on_health_component_destroyed"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

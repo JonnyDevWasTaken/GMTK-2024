@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1gu4npixx0ss"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_d30tq"]
-[ext_resource type="Texture2D" uid="uid://bywm8mnhr7a2f" path="res://assets/laserRed06.png" id="2_6ali4"]
+[ext_resource type="Texture2D" uid="uid://bywm8mnhr7a2f" path="res://assets/enemy_laser.png" id="2_6ali4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icktw"]
 radius = 7.0
@@ -9,7 +9,7 @@ height = 38.0
 
 [node name="Projectile" type="Area2D"]
 top_level = true
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("1_d30tq")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="."]

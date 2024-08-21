@@ -1,12 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckjvrh5b8ipcn"]
+[gd_scene load_steps=9 format=3 uid="uid://ckjvrh5b8ipcn"]
 
+[ext_resource type="Script" path="res://scripts/main_game.gd" id="1_afupw"]
 [ext_resource type="PackedScene" uid="uid://dtndqye11c34j" path="res://scenes/player.tscn" id="1_ukmkf"]
+[ext_resource type="PackedScene" uid="uid://dfhmlj5os4kda" path="res://scenes/game_ui.tscn" id="2_oudae"]
 [ext_resource type="PackedScene" uid="uid://b2takavh56645" path="res://scenes/asteroid.tscn" id="2_pqdxj"]
+[ext_resource type="Texture2D" uid="uid://cx8jajg3yoibv" path="res://assets/background.png" id="3_tejlh"]
+[ext_resource type="PackedScene" uid="uid://x6otmmvjjtgj" path="res://scenes/spawner.tscn" id="4_5o6y5"]
+[ext_resource type="PackedScene" uid="uid://hp7u4r4la1oh" path="res://scenes/enemy.tscn" id="6_w7o03"]
+[ext_resource type="PackedScene" uid="uid://bl1b0csw07flv" path="res://scenes/game_over.tscn" id="8_7s6n4"]
 
 [node name="MainGame" type="Node2D"]
+script = ExtResource("1_afupw")
+
+[node name="GameUI" parent="." instance=ExtResource("2_oudae")]
 
 [node name="Player" parent="." instance=ExtResource("1_ukmkf")]
-position = Vector2(458, 263)
+position = Vector2(962, 540)
 
-[node name="Asteroid" parent="." instance=ExtResource("2_pqdxj")]
-position = Vector2(849, 268)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="AsteroidSpawner" parent="Player" instance=ExtResource("4_5o6y5")]
+position = Vector2(-960, -540)
+spawn_scene = ExtResource("2_pqdxj")
+spawn_delay = 3.0
+
+[node name="EnemySpawner" parent="Player" instance=ExtResource("4_5o6y5")]
+position = Vector2(-960, -540)
+spawn_scene = ExtResource("6_w7o03")
+spawn_delay = 1.5
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(959.751, 540.25)
+scale = Vector2(2.39812, 1.7925)
+texture = ExtResource("3_tejlh")
+
+[node name="GameOver" parent="." instance=ExtResource("8_7s6n4")]
+
+[connection signal="game_end" from="Player" to="." method="_on_player_game_end"]
+[connection signal="update_resources" from="Player" to="." method="_on_player_update_resources"]

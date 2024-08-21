@@ -1,0 +1,14 @@
+res://components/health_component.tscn::106023fe0b890e66ee73c4ffb7d41617::1724166881::res://.godot/exported/133200997/export-389011ced2f16d0dab2aa6d8ad3a3a87-health_component.scn
+res://components/hitbox_component.tscn::49041d810ad506d38c2cf1cc67f9eadc::1724166881::res://.godot/exported/133200997/export-c5798ad3b5dbee8fc2a1c22a4447f3ed-hitbox_component.scn
+res://scenes/asteroid.tscn::9828d4f47254b15dfe6ccd1ca5e9ecf9::1724168993::res://.godot/exported/133200997/export-77e02d809253e7327db0f2ff299bab2a-asteroid.scn
+res://scenes/basic_weapon.tscn::910cb21436e35066b4a0ad5df00464c0::1724172231::res://.godot/exported/133200997/export-300a9f476406537b30cc556169595246-basic_weapon.scn
+res://scenes/enemy.tscn::93a8998010defa736eb458734ec3df92::1724172231::res://.godot/exported/133200997/export-a930820ec0ab16db6719aff4daa500f9-enemy.scn
+res://scenes/game_over.tscn::968ce705557a4e6c65be280af4daf8dc::1724172231::res://.godot/exported/133200997/export-21b8bee24a2bf9e9929bc898cc82b612-game_over.scn
+res://scenes/game_ui.tscn::2dfa1c36731360588f299e503be0f0b1::1724172231::res://.godot/exported/133200997/export-b1dc3a39ca5bc4d3f22bdf9178299c50-game_ui.scn
+res://scenes/main_game.tscn::81b92f98180677571b813696f5da2590::1724172231::res://.godot/exported/133200997/export-3a689a07f84009fde038ac878f1ae44a-main_game.scn
+res://scenes/menu_screen.tscn::fc362f35e51599b4ed760499c313bfab::1724172231::res://.godot/exported/133200997/export-b26a954f4e8d31d7cae678fe177a9451-menu_screen.scn
+res://scenes/player.tscn::9228321db693503aa030584efe04e63e::1724172231::res://.godot/exported/133200997/export-234fb6894ec6226e856ab7f825500d3d-player.scn
+res://scenes/projectile.tscn::c05e59be1f7c8336c9384d4bca778ca0::1724172231::res://.godot/exported/133200997/export-a882d3c243bffac1c7822c1c45b18505-projectile.scn
+res://scenes/information.tscn::5beac54c64c496062a1f61c57d852ff7::1724172231::res://.godot/exported/133200997/export-bff362d6e887a5842990686ba502a71d-information.scn
+res://scenes/credits.tscn::288d90f876c9f293e9fa4257d0ce1d52::1724172231::res://.godot/exported/133200997/export-5458de4021be8c034221a84b705724a2-credits.scn
+res://scenes/spawner.tscn::7d4f2c0e326fc2aa88021a998620b89f::1724166155::res://.godot/exported/133200997/export-c003b31af2e0ca5030eda5db94aeddff-spawner.scn

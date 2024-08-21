@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2takavh56645"]
 
-[ext_resource type="Texture2D" uid="uid://cnv3ucx4jwsw7" path="res://assets/meteorGrey_big4.png" id="1_us7t3"]
+[ext_resource type="Texture2D" uid="uid://cnv3ucx4jwsw7" path="res://assets/asteroid.png" id="1_us7t3"]
 [ext_resource type="Script" path="res://scripts/asteroid.gd" id="2_0extn"]
 [ext_resource type="PackedScene" uid="uid://b6mlj6ofwkbej" path="res://components/health_component.tscn" id="2_rt1a8"]
 [ext_resource type="PackedScene" uid="uid://bn77f5y5t28im" path="res://components/hitbox_component.tscn" id="3_x1350"]
@@ -8,12 +8,20 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_kgn3e"]
 radius = 51.0392
 
-[node name="Asteroid" type="Sprite2D"]
-texture = ExtResource("1_us7t3")
+[node name="Asteroid" type="RigidBody2D"]
+top_level = true
+gravity_scale = 0.0
 script = ExtResource("2_0extn")
+MAX_SPEED = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_us7t3")
+
+[node name="AsteroidCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kgn3e")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_rt1a8")]
-MAX_HEALTH = 5.0
+MAX_HEALTH = 3.0
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_x1350")]
 collision_layer = 2
@@ -22,4 +30,8 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_kgn3e")
 
+[node name="AsteroidVisibility" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(10, 10)
+
 [connection signal="destroyed" from="HealthComponent" to="." method="_on_health_component_destroyed"]
+[connection signal="screen_exited" from="AsteroidVisibility" to="." method="_on_asteroid_visibility_screen_exited"]

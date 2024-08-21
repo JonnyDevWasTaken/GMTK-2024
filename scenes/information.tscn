@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnn5762c5k7yj"]
+
+[ext_resource type="Script" path="res://scripts/information.gd" id="1_s4722"]
+
+[node name="Information" type="CanvasLayer"]
+script = ExtResource("1_s4722")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.309804)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_left = 776.0
+offset_top = 336.0
+offset_right = 802.0
+offset_bottom = 391.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "A"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_left = 921.0
+offset_top = 337.0
+offset_right = 1134.0
+offset_bottom = 392.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Rotate Left"
+
+[node name="Label3" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_left = 776.0
+offset_top = 395.0
+offset_right = 805.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "D"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_left = 921.0
+offset_top = 393.0
+offset_right = 1159.0
+offset_bottom = 448.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Rotate Right"
+
+[node name="Label5" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_left = 776.0
+offset_top = 454.0
+offset_right = 889.0
+offset_bottom = 509.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Space"
+
+[node name="Label6" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_left = 921.0
+offset_top = 457.0
+offset_right = 1134.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Thrust"
+
+[node name="Label7" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 552.0
+offset_right = 1522.0
+offset_bottom = 665.0
+theme_override_font_sizes/font_size = 40
+text = "Destroy asteroids to get materials
+Destroy enemy spaceships to get materials and gain size!
+
+Game ends when you take too much damage!"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 1752.0
+offset_top = 64.0
+offset_right = 1852.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="button_up" from="ColorRect/BackButton" to="." method="_on_back_button_button_up"]
